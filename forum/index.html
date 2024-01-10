@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #passcodeInput {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #forumPost {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+        }
+
+        #forumPost div {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Forum Posts</h1>
+    <label for="passcodeInput">Enter Passcode:</label>
+    <input type="text" id="passcodeInput" placeholder="Enter passcode">
+    <button onclick="loadForumPost()">Load Post</button>
+
+    <div id="forumPost"></div>
+
+    <script>
+        function loadForumPost() {
+            const enteredPasscode = document.getElementById('passcodeInput').value;
+
+            // Use fetch to load content from a text file
+            fetch(`forum/${enteredPasscode}.txt`)  // Adjust the path to include the 'forum' directory
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Post not found');
+                    }
+                    return response.text();
+                })
+                .then(content => {
+                    // Update the content in the forum post box
+                    document.getElementById('forumPost').innerHTML = `<div>${content}</div>`;
+                })
+                .catch(error => {
+                    // Handle post not found or other errors
+                    document.getElementById('forumPost').innerHTML = '<div>Invalid passcode. Post not found.</div>';
+                });
+        }
+    </script>
+</body>
+</html>
