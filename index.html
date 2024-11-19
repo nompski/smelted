@@ -1,1 +1,97 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>smelted | it's happening.</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #button-container {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+    }
+
+    #goForthButton {
+      background-color: #000; /* Black background color */
+      color: #fff; /* White text color */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script id="vertex" type="x-shader/x-vertex">
+varying vec2 vUv;
+uniform float uTime;
+uniform float mouse;
+
+void main() {
+    vUv = uv;
+    float time = uTime * 5.;
+    vec3 transformed = position;
+
+    transformed.x += sin(time + position.y) * .5;
+    transformed.y += cos(time + position.z) * .15;
+    transformed.z += sin(time + position.x);
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+}
+</script>
+<script id="frag" type="x-shader/x-fragment">
+varying vec2 vUv;
+uniform float mouse;
+uniform float uTime;
+uniform sampler2D uTexture;
+
+void main() {
+    float time = uTime;
+    vec2 pos = vUv;
+    
+    float move = sin(time + mouse) * 0.01;
+    float r = texture2D(uTexture, pos + cos(time * 2. - time + pos.x) * .01).r;
+    float g = texture2D(uTexture, pos + tan(time * .5 + pos.x - time) * .01).g;
+    float b = texture2D(uTexture, pos - cos(time * 2. + time + pos.y) * .01).b;
+    float a = texture2D(uTexture, pos).a;
+    gl_FragColor = vec4(r, g, b, a);
+}
+</script>
+<!-- partial -->
+
+<!-- Add the button -->
+<div id="button-container">
+  <button id="goForthButton">Go Forth</button>
+</div>
+
+<!-- Load external scripts -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js'></script>
+<script src="./script.js"></script>
+
+<!-- Add JavaScript for button click and redirection -->
+<script>
+  document.getElementById('goForthButton').addEventListener('click', function() {
+    // Generate a random number (0 or 1)
+    var randomNumber = Math.floor(Math.random() * 2);
+
+    // Redirect based on the random number
+    if (randomNumber === 0) {
+      window.location.href = 'https://smelted.net/home';
+    } else {
+      window.location.href = 'https://smelted.net/home';
+    }
+  });
+</script>
+
+</body>
+</html>

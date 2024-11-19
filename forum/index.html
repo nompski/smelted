@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smelted.net | forum</title>
+    <link rel="icon" type="image/x-icon" href="Images/Transparents/Pixels/cd.gif">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #4d0000;
+            background-image: url('Images/Backgrounds/back-680.gif');
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #header {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        gardentitle {
+            line-height: 3.5em;
+        }
+
+        nav {
+            display: block;
+            width: 100%;
+            text-align: center;
+            color: #c06a69;
+        }
+
+        nav .navlink {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 2px;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-weight: bold;
+        }
+
+        #flex {
+            display: flex;
+        }
+
+        main {
+            background-color: #13092d;
+            flex: 1;
+            padding: 20px;
+            order: 2;
+            border: 5px #4d0000 double;
+        }
+
+        footer {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-size: small;
+            color: #4d0000;
+            line-height: 1em;
+        }
+
+        h1 {
+            color: #4d0000;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            margin: 15px;
+            line-height: 1em;
+            letter-spacing: 1px;
+            font-size: 60px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        #passcodeInput {
+            padding: 5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4d0000; /* hola */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #forumPost {
+            border: 2px solid #4d0000;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #fff;
+            width: 80%;
+        }
+
+        #forumPost div {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="headerArea">
+            <div id="header">
+                <gardentitle>
+                    <h1>smelted.net forum archive</h1>
+                    <h3 style="border: none; padding-bottom: 5px;"></h3>
+                </gardentitle>
+            </div>
+            <nav id="templaterr-topbar">
+                <!-- Your navigation links go here -->
+            </nav>
+        </div>
+
+        <div id="flex">
+            <main>
+                <label for="passcodeInput">Enter Post ID:</label>
+                <input type="text" id="passcodeInput" placeholder="Enter passcode">
+                <button onclick="loadForumPost()">Load Post</button>
+
+                <div id="forumPost"></div>
+            </main>
+        </div>
+
+        <footer id="footer">
+            <!-- Your footer content goes here -->
+        </footer>
+    </div>
+
+    <script>
+        function loadForumPost() {
+            const enteredPasscode = document.getElementById('passcodeInput').value;
+
+            // Use fetch to load content from a text file
+            fetch(`forum/${enteredPasscode}.txt`)  // Adjust the path to include the 'forum' directory
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Post not found');
+                    }
+                    return response.text();
+                })
+                .then(content => {
+                    // Update the content in the forum post box
+                    document.getElementById('forumPost').innerHTML = `<div>${content}</div>`;
+                })
+                .catch(error => {
+                    // Handle post not found or other errors
+                    document.getElementById('forumPost').innerHTML = '<div>Invalid Post ID. Post not found.</div>';
+                });
+        }
+    </script>
+</body>
+</html>

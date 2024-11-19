@@ -1,0 +1,90 @@
+body, html {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  background: #000;
+}
+
+#main {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  text-align: center;
+  background: #000;
+  max-width: 100%;
+  color: #fff;
+  word-wrap: break-word;
+  line-height: 9px;
+  margin-top: 20px;
+}
+
+#footer {
+  text-align: center;
+}
+
+.c_0 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #0000ff; /* Blue */
+  color: #0000ff;
+}
+
+.c_1 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #ff0000; /* Red */
+  color: #ff0000;
+}
+
+.c_2 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #00ff00; /* Green */
+  color: #00ff00;
+}
+
+.c_3 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #ffff00; /* Yellow */
+  color: #ffff00;
+}
+
+.c_4 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #ffa500; /* Orange */
+  color: #ffa500;
+}
+
+.c_5 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #800080; /* Purple */
+  color: #800080;
+}
+
+.c_6 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #008080; /* Teal */
+  color: #008080;
+}
+
+.c_7 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #800000; /* Maroon */
+  color: #800000;
+}
+
+.c_8 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #008000; /* Dark Green */
+  color: #008000;
+}
+
+.c_9 {
+  font-size: 9px;
+  padding: 0 3px;
+  background: #808080; /* Gray */
+  color: #808080;
+}

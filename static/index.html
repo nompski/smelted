@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smelted.net | static</title>
+  <style>
+    html {
+      background: 
+        repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
+        repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 60% 60%/2500px 2500px;
+      background-blend-mode: difference;
+      animation: b .2s infinite alternate;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .hidden-text {
+      font-size: 64px;
+      color: rgba(255, 255, 255, 0.14); /* Slightly more visible white text */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2; /* Ensure the text is on top of the background */
+    }
+
+    @keyframes b {
+      100% { background-position: 50% 0, 60% 50% }
+    }
+  </style>
+</head>
+<body>
+  <div class="hidden-text">Ah but if there is no point then why would anyone bother?</div>
+</body>
+</html>
